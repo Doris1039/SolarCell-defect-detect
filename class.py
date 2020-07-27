@@ -1,5 +1,5 @@
 
-from utils.elpv_reader import load_dataset
+#from utils.elpv_reader import load_dataset
 import cv2
 import numpy as np
 from sklearn.model_selection import train_test_split
@@ -25,7 +25,7 @@ def countFile(rootDir):
                 N = N + n
         print(N)
 
-
+'''
 images, labels, types, DefectType = load_dataset()
 
 label_names = list(set(DefectType))
@@ -85,8 +85,8 @@ import os
 
 
 
-rootDir=r"E:\Application\elpv-dataset\test_data\data_original"
-saveDir=r"E:\Application\elpv-dataset\test_data\data_nameR"
+rootDir=r"/Users/wss/Documents/IC/modules/Individual-Research-Project/SolarCell-defect-detect/newData_r_a/train"
+saveDir=r"/Users/wss/Documents/IC/modules/Individual-Research-Project/SolarCell-defect-detect/newData_r_a/vali_c"
 
 os.chdir(rootDir) #目录切换到当前目录~
 dirs = os.listdir(rootDir)
@@ -97,19 +97,23 @@ for filename in dirs:
         save_path = saveDir + '\\' + filename + '\\' 
         dirsS = os.listdir(source_path)
         n = len(dirsS)
-        N = random.sample(range(1,n+1),n)
+        N = n // 9
         print(n,len(N))
         print(filename)
+        c = 0
         for file in dirsS:
-                read_path = source_path +'\\' + file
-                Spath = save_path + 'C'+str(N[i]) + '.png'
-                print(read_path,Spath)
-                image = cv2.imread(read_path)
+                if i == c * N:
+                        c = c + 1
+                        read_path = source_path +'\\' + file
+                        Spath = save_path + 'D'+str(N[i]) + '.png'
+                        print(c,file)
+                        '''
+                        image = cv2.imread(read_path)
+                        cv2.imwrite(Spath, image)
+                        '''
+                        i = i + 1
 
-                cv2.imwrite(Spath, image)
-                i = i + 1
-
-
+'''
 rootDir=r"E:\Application\elpv-dataset\newData_r\vali"
 saveDir_train=r"E:\Application\elpv-dataset\newData_dVSf_r\vali\Defective"
 os.chdir(rootDir) 
